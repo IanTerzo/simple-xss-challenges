@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<script src="index.js"></script>
+</head>
+
+<body>
+
+
+<h1>FunnyGifs - Your Profile</h1>
+
+<div class="container" id="container">
+<img id="1" src="https://c.tenor.com/areYG8UiKuIAAAAd/cat.gif" width=220px height=220px> 
+<img id="2" src="https://i.pinimg.com/originals/17/cf/b3/17cfb3ca0eca7330e66f5074f9372c06.gif" width=220px height=220px>
+</div>
+
+
+<div class="container">
+<input id="gifid" placeholder="The ID of the old gif"><input id="gifurl" placeholder="The url of the new gif">
+</div>
+
+<div class="container">
+<button style="background-color: lightgreen; font-size: 23px" onclick="update()"> Update that gif! </button> 
+</div>
+
+<h3 id="error"> </h3>
+
+<h2 id="funnymemes_message"> This website uses the FunnyMemes plugin </h2>
+<script id="funnymemes" src="funnymemes.js" onerror="document.getElementById('funnymemes_message').textContent = 'Failed to load the FunnyMemes plugin';document.getElementById('funnymemes_message').style.color = 'red';"></script>
+
+</div>
+
+<script>
+	function cloneAttributes(target, source) {
+		[...source.attributes].forEach( attr => { target.setAttribute(attr.nodeName ,attr.nodeValue) })
+	}
+	
+	function update() {
+		if (document.getElementById("gifid").value.length == 0){
+			document.getElementById("error").textContent = "Missing the ID of the gif to update.";
+			return
+		
+		}
+		if (document.getElementById("gifurl").value.length == 0){
+			document.getElementById("error").textContent = "Missing the URL of the new gif to upload.";
+			return
+		
+		}
+		if (document.getElementById("gifurl").value.length == 0){
+			document.getElementById("error").textContent = "Missing the URL of the new gif to upload.";
+			return
+		
+		}
+		
+		if (!document.getElementById("gifurl").value.includes(".gif")){
+			document.getElementById("error").textContent = "The new file must be a gif, are you trying to do something shady?";
+			return
+		}
+		
+		document.getElementById("error").textContent = ""
+		 
+		//update the gif
+		
+		gif_to_update = document.getElementById(document.getElementById("gifid").value)
+		newgif = document.createElement(gif_to_update.tagName)
+		cloneAttributes(newgif, gif_to_update)
+		newgif.src = document.getElementById("gifurl").value
+		
+		if (document.getElementById("gifid").value == 1){
+		gif2 = document.getElementById("2")
+		gif2.remove()
+		
+		gif_to_update.remove()
+		document.getElementById("container").appendChild(newgif)
+		
+		document.getElementById("container").appendChild(gif2)
+		
+		}
+		else{
+		
+			gif_to_update.remove()
+			document.getElementById("container").appendChild(newgif)
+		
+		}
+		
+		
+	}
+</script>
+
+<style>
+	h1, h2, h3{
+		text-align: center;
+	}
+	
+	.container{
+		display: flex;
+		justify-content: center;
+		margin-bottom: 20px;
+	}
+	
+	.container img{
+		margin-left: 30px
+	}
+	
+	#funnymemes_message{
+		background-color: lightgray;
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		margin-left: auto; 
+		margin-right: auto; 
+	
+	}
+</style>
+
+</body>
+</html>
