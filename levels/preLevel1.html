@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<script src="index.js"></script>
+</head>
+
+<body>
+
+<h1>XSSearch</h1>
+<h2>The most secure search engine.</h2>
+  
+<div class="search_container">
+<input id="search_content" > <button onclick="search()">Search!</button>
+</div>
+
+<h3 id="search_result"></h3>
+
+<script>
+	function search() {
+		// A good search engine leaves the answer
+		document.getElementById("search_result").innerHTML = "No results found for: " + document.getElementById("search_content").value;
+	}
+</script>
+
+<style>
+	
+	h1, h2, h3{
+		text-align: center;
+	}
+	
+	input{
+		display:inline-block
+	}
+	
+	.search_container{
+		display: flex;
+		justify-content: center;
+	}
+</style>
+
+</body>
+</html>
